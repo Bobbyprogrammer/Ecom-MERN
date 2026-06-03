@@ -1,0 +1,13 @@
+import React from "react";
+
+export default function Terms() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
+      <h1 className="text-4xl font-bold mb-4"> Terms & Conditions</h1>
+      <p className="text-gray-600 text-lg">
+        Our Terms Page is currently under development and will be available
+        soon.
+      </p>
+    </div>
+  );
+}
