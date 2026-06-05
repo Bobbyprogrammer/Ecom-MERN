@@ -15,7 +15,25 @@ const CategoryPanel = (props) => {
     props.setIsOpenCatPanel(newOpen);
     props.propsSetIsOpenCatPanel(newOpen);
   };
+  const handleLogout = () => {
+    props.setIsOpenCatPanel(false);
+    props.propsSetIsOpenCatPanel(false);
 
+    fetchDataFromApi(
+      `/api/user/logout?token=${localStorage.getItem("accessToken")}`,
+      { withCredentials: true },
+    ).then((res) => {
+      if (res?.error === false) {
+        context.setIsLogin(false);
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        context.setUserData(null);
+        context?.setCartData([]);
+        context?.setMyListData([]);
+        window.location.href = "/";
+      }
+    });
+  };
   const DrawerList = (
     <Box
       sx={{ width: 320 }}
@@ -46,58 +64,22 @@ const CategoryPanel = (props) => {
         />
       )}
 
-      {context?.windowWidth < 992 && context?.isLogin === false && (
-        <div className="mt-auto p-5 border-t bg-white">
-          <Link
-            to="/login"
-            onClick={() => {
-              props.setIsOpenCatPanel(false);
-              props.propsSetIsOpenCatPanel(false);
-            }}
-          >
-            <Button
-              className="
-        !bg-[#D7372F]
-        hover:!bg-[#c52d26]
-        !text-white
-        !font-[700]
-        !rounded-lg
-        !py-4
-        !w-full
-        !text-[18px]
-      "
-            >
+      <div className="mt-auto p-5 border-t bg-white">
+        {!context?.isLogin ? (
+          <Link to="/login">
+            <Button className="!bg-[#D7372F] !text-white !w-full !h-[40px] !rounded-lg">
               LOG IN
             </Button>
           </Link>
-        </div>
-      )}
-
-      {context?.windowWidth < 992 && context?.isLogin === true && (
-        <div
-          className="p-3 block"
-          onClick={() => {
-            props.setIsOpenCatPanel(false);
-            props.propsSetIsOpenCatPanel(false);
-            fetchDataFromApi(
-              `/api/user/logout?token=${localStorage.getItem("accessToken")}`,
-              { withCredentials: true },
-            ).then((res) => {
-              if (res?.error === false) {
-                context.setIsLogin(false);
-                localStorage.removeItem("accessToken");
-                localStorage.removeItem("refreshToken");
-                context.setUserData(null);
-                context?.setCartData([]);
-                context?.setMyListData([]);
-                history("/");
-              }
-            });
-          }}
-        >
-          <Button className="btn-org w-full">Logout</Button>
-        </div>
-      )}
+        ) : (
+          <Button
+            onClick={handleLogout}
+            className="!bg-[#D7372F] !text-white !w-full !h-[40px] !rounded-lg"
+          >
+            LOGOUT
+          </Button>
+        )}
+      </div>
     </Box>
   );
 

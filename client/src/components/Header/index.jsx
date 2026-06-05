@@ -90,7 +90,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white fixed top-0 left-0 w-full z-[9999] shadow-sm">
+      <header className="bg-white fixed top-0 left-0 w-full z-[999] shadow-sm">
         <div className="header py-2 lg:py-4 border-b-[1px] border-gray-250">
           <div className="container flex items-center justify-between">
             {context?.windowWidth < 992 && (

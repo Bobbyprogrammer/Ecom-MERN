@@ -65,8 +65,8 @@ export const ProductDetails = () => {
 
   return (
     <>
-      <div className="py-5 hidden">
-        <div className="container">
+      <div className="py-5  hidden">
+        <div className="container ">
           <Breadcrumbs aria-label="breadcrumb">
             <Link
               underline="hover"
@@ -96,7 +96,7 @@ export const ProductDetails = () => {
         </div>
       </div>
 
-      <section className="bg-white py-5">
+      <section className="bg-white py-16">
         {isLoading === true ? (
           <div className="flex items-center justify-center min-h-[300px]">
             <CircularProgress />

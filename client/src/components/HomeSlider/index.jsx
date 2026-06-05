@@ -15,7 +15,7 @@ const HomeSlider = (props) => {
   const context = useContext(MyContext);
 
   return (
-    <section className="homeSlider  relative z-[99] w-screen">
+    <section className="homeSlider  relative  w-screen">
       <div>
         <Swiper
           loop={true}
