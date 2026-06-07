@@ -246,10 +246,10 @@ export const Sidebar = (props) => {
       </div>
       <br />
       <Button
-        className="btn-org w-full !flex lg:!hidden"
+        className="btn-org w-full !flex lg:!hidden !sticky bottom-8 z-[100] shadow-lg"
         onClick={() => context?.setOpenFilter(false)}
       >
-        <MdOutlineFilterAlt size={20} /> Filers
+        <MdOutlineFilterAlt size={20} /> Filters
       </Button>
     </aside>
   );
